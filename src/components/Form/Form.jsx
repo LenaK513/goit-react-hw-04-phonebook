@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
 
 import { FormStyle, Input, Button } from './Form.styled';
 class Form extends Component {
@@ -14,8 +13,12 @@ class Form extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
-    this.props.onSubmitForApp(this.state);
+    this.props.onSubmitForApp(this.state.name);
+    this.resetForm();
+  };
+
+  resetForm = () => {
+    this.setState({ name: '' });
   };
   render() {
     return (

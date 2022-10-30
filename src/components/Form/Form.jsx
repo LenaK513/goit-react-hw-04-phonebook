@@ -4,9 +4,11 @@ import { FormStyle, Input, Button } from './Form.styled';
 class Form extends Component {
   state = {
     name: '',
+    number: '',
   };
 
   handleInput = event => {
+    // console.log(event.currentTarget.value);
     const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
   };
@@ -14,16 +16,17 @@ class Form extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.onSubmitForApp(this.state.name);
+    this.props.onSubmitForApp(this.state.number);
     this.resetForm();
   };
 
   resetForm = () => {
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
   render() {
     return (
       <FormStyle onSubmit={this.handleSubmit}>
-        <label> Name</label>
+        <label htmlFor="1"> Name</label>
 
         <Input
           type="text"
@@ -33,8 +36,19 @@ class Form extends Component {
           required
           value={this.state.name}
           onChange={this.handleInput}
+          id="1"
         />
-
+        <label htmlFor="2"> Number</label>
+        <Input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          value={this.state.number}
+          onChange={this.handleInput}
+          id="2"
+        />
         <Button type="submit">Add contact </Button>
       </FormStyle>
     );

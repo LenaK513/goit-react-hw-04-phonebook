@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
+
 import Form from '../Form/Form';
+import { ContactList } from 'components/ContactList/ContactList';
 import { Container } from './App.styled';
 
-const id = nanoid(8);
 class App extends Component {
   state = {
     contacts: [],
@@ -11,13 +11,10 @@ class App extends Component {
   formSubmitForApp = data => {
     console.log(data);
 
-    const item = {
-      data: 'fghjk',
-      id,
-    };
-
-    this.setState(prevState => ({ contacts: [item, ...prevState.contacts] }));
-    console.log(this.state.contacts);
+    this.setState(prevState => ({
+      contacts: [data, ...prevState.contacts],
+    }));
+    console.log(this.state);
   };
 
   render() {
@@ -26,9 +23,11 @@ class App extends Component {
         <h1>Phonebook</h1>
         <Form onSubmitForApp={this.formSubmitForApp} />
         <h2>Contacts</h2>
-        <ul>
-          <li key={id}>{this.formSubmitForApp.data}</li>
-        </ul>
+
+        <ContactList
+          contacts={this.state.contacts}
+          onGenerateList={this.formSubmitForApp}
+        />
       </Container>
     );
   }

@@ -1,17 +1,18 @@
 import React from 'react';
-// import { ContactItem } from 'components/ContactItem/ContactItem';
+import { ContactItem } from 'components/ContactItem/ContactItem';
 export const ContactList = ({ contacts, onGenerateList }) => {
   return (
     <ul>
-      {contacts.map(contact => (
-        <li
-          key={contact}
-          // name={name}
-          // number={number}
+      {contacts.map(({ id, data }) => (
+        <ContactItem
+          id={id}
+          key={data.name}
+          name={data.name}
+          number={data.number}
           onSubmit={onGenerateList}
         >
-          {contact}
-        </li>
+          {/* {name}:{number} */}
+        </ContactItem>
       ))}
     </ul>
   );

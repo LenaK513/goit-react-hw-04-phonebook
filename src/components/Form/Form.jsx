@@ -8,15 +8,15 @@ class Form extends Component {
   };
 
   handleInput = event => {
-    // console.log(event.currentTarget.value);
     const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
   };
 
   handleSubmit = event => {
     event.preventDefault();
+
     this.props.onSubmitForApp(this.state);
-    // this.props.onSubmitForApp(this.state.number);
+
     this.resetForm();
   };
 

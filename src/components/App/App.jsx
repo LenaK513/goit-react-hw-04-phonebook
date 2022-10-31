@@ -12,13 +12,11 @@ class App extends Component {
   };
 
   formSubmitForApp = data => {
-    console.log(data.name);
-
     const contact = {
       id: nanoid(),
       data,
     };
-    console.log(contact);
+
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
     }));
@@ -35,6 +33,7 @@ class App extends Component {
     const contactsForFilter = contacts.filter(contact =>
       contact.data.name.toLowerCase().includes(normalizedFilter)
     );
+
     return (
       <Container>
         <h1>Phonebook</h1>

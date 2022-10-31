@@ -10,9 +10,7 @@ export const ContactList = ({ contacts, onGenerateList }) => {
           name={data.name}
           number={data.number}
           onSubmit={onGenerateList}
-        >
-          {/* {name}:{number} */}
-        </ContactItem>
+        ></ContactItem>
       ))}
     </ul>
   );

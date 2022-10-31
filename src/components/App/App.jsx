@@ -7,6 +7,7 @@ import { Container } from './App.styled';
 class App extends Component {
   state = {
     contacts: [],
+    filter: '',
   };
 
   formSubmitForApp = data => {
@@ -22,15 +23,23 @@ class App extends Component {
     }));
   };
 
+  findNameByFilter = event => {
+    this.setState({ filter: event.currentTarget.value });
+  };
+
   render() {
+    const { contacts, filter } = this.state;
     return (
       <Container>
         <h1>Phonebook</h1>
         <Form onSubmitForApp={this.formSubmitForApp} />
         <h2>Contacts</h2>
-
+        <label>
+          Find contacts by name
+          <input type="text" value={filter} onChange={this.findNameByFilter} />
+        </label>
         <ContactList
-          contacts={this.state.contacts}
+          contacts={contacts}
           onGenerateList={this.formSubmitForApp}
         />
       </Container>

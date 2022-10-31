@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import Form from '../Form/Form';
 import { ContactList } from 'components/ContactList/ContactList';
+import { Filter } from 'components/Filter/Filter';
 import { Container } from './App.styled';
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
   };
 
   formSubmitForApp = data => {
-    console.log(data);
+    console.log(data.name);
 
     const contact = {
       id: nanoid(),
@@ -29,17 +30,19 @@ class App extends Component {
 
   render() {
     const { contacts, filter } = this.state;
+
+    const normalizedFilter = filter.toLowerCase();
+    const contactsForFilter = contacts.filter(contact =>
+      contact.data.name.toLowerCase().includes(normalizedFilter)
+    );
     return (
       <Container>
         <h1>Phonebook</h1>
         <Form onSubmitForApp={this.formSubmitForApp} />
         <h2>Contacts</h2>
-        <label>
-          Find contacts by name
-          <input type="text" value={filter} onChange={this.findNameByFilter} />
-        </label>
+        <Filter value={filter} onChangeForFilter={this.findNameByFilter} />
         <ContactList
-          contacts={contacts}
+          contacts={contactsForFilter}
           onGenerateList={this.formSubmitForApp}
         />
       </Container>

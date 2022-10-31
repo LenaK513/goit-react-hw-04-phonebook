@@ -1,10 +1,11 @@
 import React from 'react';
-
+import { InputFilter } from './Filter.styled';
+import { Input } from 'components/Form/Form.styled';
 export const Filter = ({ value, onChangeForFilter }) => {
   return (
-    <label>
+    <InputFilter>
       Find contacts by name
-      <input type="text" value={value} onChange={onChangeForFilter} />
-    </label>
+      <Input type="text" value={value} onChange={onChangeForFilter} />
+    </InputFilter>
   );
 };

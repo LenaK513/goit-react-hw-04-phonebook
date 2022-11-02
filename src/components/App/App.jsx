@@ -11,19 +11,39 @@ class App extends Component {
     filter: '',
   };
 
-  formSubmitForApp = data => {
+  formSubmitForApp = ({ name, number }) => {
+    console.log({ name, number });
+
     const contact = {
       id: nanoid(),
-      data,
+      name,
+      number,
     };
 
+    const normalizedName = contact.name.toLowerCase();
+    const compareNames = this.state.contacts.find(
+      contactToCompare => contactToCompare.name.toLowerCase() === normalizedName
+    );
+
+    if (compareNames) {
+      alert(`${contact.name} is already in the list of contacts`);
+    }
+
+    console.log(contact);
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
     }));
   };
 
   findNameByFilter = event => {
+    console.log(event.currentTarget.value);
     this.setState({ filter: event.currentTarget.value });
+  };
+
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
   };
 
   render() {
@@ -31,7 +51,7 @@ class App extends Component {
 
     const normalizedFilter = filter.toLowerCase();
     const contactsForFilter = contacts.filter(contact =>
-      contact.data.name.toLowerCase().includes(normalizedFilter)
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
 
     return (
@@ -43,6 +63,7 @@ class App extends Component {
         <ContactList
           contacts={contactsForFilter}
           onGenerateList={this.formSubmitForApp}
+          onDeleteContact={this.deleteContact}
         />
       </Container>
     );

@@ -1,15 +1,16 @@
 import React from 'react';
 import { ContactItem } from 'components/ContactItem/ContactItem';
-export const ContactList = ({ contacts, onGenerateList }) => {
+export const ContactList = ({ contacts, onGenerateList, onDeleteContact }) => {
   return (
     <ul>
-      {contacts.map(({ id, data }) => (
+      {contacts.map(({ id, name, number }) => (
         <ContactItem
           id={id}
-          key={data.name}
-          name={data.name}
-          number={data.number}
+          key={name}
+          name={name}
+          number={number}
           onSubmit={onGenerateList}
+          onDeleteContact={onDeleteContact}
         ></ContactItem>
       ))}
     </ul>

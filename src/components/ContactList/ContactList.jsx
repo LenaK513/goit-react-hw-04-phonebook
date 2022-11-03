@@ -9,7 +9,6 @@ export const ContactList = ({ contacts, onGenerateList, onDeleteContact }) => {
           key={name}
           name={name}
           number={number}
-          onSubmit={onGenerateList}
           onDeleteContact={onDeleteContact}
         ></ContactItem>
       ))}

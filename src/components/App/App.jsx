@@ -27,6 +27,7 @@ class App extends Component {
 
     if (compareNames) {
       alert(`${contact.name} is already in the list of contacts`);
+      return;
     }
 
     console.log(contact);

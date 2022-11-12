@@ -12,8 +12,6 @@ export function App() {
   const [filter, setFilter] = useState('');
 
   const formSubmitForApp = ({ name, number }) => {
-    console.log({ name, number });
-
     const contact = {
       id: nanoid(),
       name,

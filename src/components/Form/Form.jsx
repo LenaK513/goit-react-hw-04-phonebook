@@ -23,8 +23,7 @@ export default function Form({ onSubmitForApp }) {
   const handleSubmit = event => {
     event.preventDefault();
     onSubmitForApp({ name, number });
-    // resetFormName();
-    // resetFormNumber();
+
     reset();
   };
 
@@ -32,10 +31,6 @@ export default function Form({ onSubmitForApp }) {
     setName('');
     setNumber('');
   };
-
-  // const resetFormNumber = () => {
-  //   setNumber('');
-  // };
 
   return (
     <FormStyle onSubmit={handleSubmit}>

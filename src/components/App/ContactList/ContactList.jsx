@@ -6,8 +6,8 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
     <ul>
       {contacts.map(({ id, name, number }) => (
         <ContactItem
-          id={id}
           key={name}
+          id={id}
           name={name}
           number={number}
           onDeleteContact={onDeleteContact}
@@ -20,8 +20,9 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
 ContactList.propTypes = {
   onDeleteContact: PropTypes.func,
   contacts: PropTypes.arrayOf(
-    PropTypes.exact({
+    PropTypes.shape({
       id: PropTypes.string.isRequired,
+      key: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       number: PropTypes.number.isRequired,
     })

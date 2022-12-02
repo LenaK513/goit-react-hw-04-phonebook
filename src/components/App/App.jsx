@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import Form from '../Form/Form';
-import { ContactList } from 'components/App/ContactList/ContactList';
+import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { Container } from './App.styled';
 
